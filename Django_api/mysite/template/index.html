@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Razas de Perros</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Lista de Razas de Perros</h1>
+
+        <form method="get" class="mb-4">
+            <div class="form-row">
+                <div class="col">
+                    <label for="search">Buscar: </label>
+                    <input type="text" id="search" name="search" class="form-control" value="{{ search_query }}">
+                </div>
+                <div class="col">
+                    <label for="user_count">Cantidad de Razas: </label>
+                    <input type="number" id="user_count" name="user_count" class="form-control" value="{{ user_count }}" min="1" max="100">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary mt-4">Buscar</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Peso (kg)</th>
+                    <th>Altura (cm)</th>
+                    <th>Esperanza de Vida</th>
+                    <th>Temperamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for breed in data %}
+                    <tr>
+                        <td>{{ breed.name }}</td>
+                        <td>{{ breed.weight.metric }}</td>
+                        <td>{{ breed.height.metric }}</td>
+                        <td>{{ breed.life_span }}</td>
+                        <td>{{ breed.temperament }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
